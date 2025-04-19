@@ -14,16 +14,16 @@ const Index = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        className="min-h-screen w-full"
       >
         <AdSlider />
         
-        <FeaturedCaterers />
-        
-        <HowItWorks />
-        
-        <Testimonials />
-        
-        <CallToAction />
+        <div className="max-w-7xl mx-auto px-4 space-y-16 py-8">
+          <FeaturedCaterers />
+          <HowItWorks />
+          <Testimonials />
+          <CallToAction />
+        </div>
       </motion.div>
     </Layout>
   );

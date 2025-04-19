@@ -58,7 +58,7 @@ export default function Layout({ children, showSidebar = true }: LayoutProps) {
         )}
         
         <motion.main
-          className={`flex-1 ${showSidebar && !isMobile ? "md:ml-64" : ""}`}
+          className={`flex-1 ${showSidebar && !isMobile ? "ml-0" : ""}`}
           initial="initial"
           animate="animate"
           exit="exit"

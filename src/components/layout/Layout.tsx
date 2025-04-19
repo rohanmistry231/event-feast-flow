@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Header from "./Header";
@@ -14,6 +14,15 @@ interface LayoutProps {
 export default function Layout({ children, showSidebar = true }: LayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const isMobile = useIsMobile();
+
+  // Close sidebar when switching to mobile view
+  useEffect(() => {
+    if (isMobile) {
+      setSidebarOpen(false);
+    } else {
+      setSidebarOpen(true);
+    }
+  }, [isMobile]);
 
   const pageVariants = {
     initial: {
@@ -42,14 +51,14 @@ export default function Layout({ children, showSidebar = true }: LayoutProps) {
       <Header />
       
       <div className="flex flex-1">
-        {showSidebar && (
+        {showSidebar && !isMobile && (
           <AnimatePresence>
             <Sidebar />
           </AnimatePresence>
         )}
         
         <motion.main
-          className={`flex-1 ${showSidebar && !isMobile ? "ml-64" : ""}`}
+          className={`flex-1 ${showSidebar && !isMobile ? "md:ml-64" : ""}`}
           initial="initial"
           animate="animate"
           exit="exit"
